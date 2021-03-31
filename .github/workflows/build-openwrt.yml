@@ -135,6 +135,13 @@ jobs:
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
+        
+    - name: 上传.config配置文件在github空间
+      if: steps.organize.outputs.status == 'success'
+      uses: actions/upload-artifact@main
+      with:
+        name: .config_${{env.DEVICE_NAME}}_${{ env.FILE_DATE }}
+        path: ./config
 
     - name: Upload firmware to cowtransfer
       id: cowtransfer
