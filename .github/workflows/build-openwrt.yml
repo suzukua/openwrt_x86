@@ -50,19 +50,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-#     - name: 微信通知
-#       uses: yakumioto/serverchan-action@v2
-#       with:
-#         key: ${{ secrets.SCKEY }}
-#         text: 开始编译啦
-#         desp: 主人您的固件正在努力耕耘中......
-
-    - name: telegram通知
-      uses: appleboy/telegram-action@master
+    - name: 微信通知
+      uses: yakumioto/serverchan-action@v2
       with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 主人您的固件正在努力耕耘中......
+        key: ${{ secrets.SCKEY }}
+        text: 开始编译啦
+        desp: 主人您的固件正在努力耕耘中......
         
     - name: Initialization environment
       env:
@@ -210,21 +203,13 @@ jobs:
         keep_latest: 3
         delete_tags: true
         
-#     - name: 微信通知
-#       if: steps.organize.outputs.status == 'success'
-#       uses: yakumioto/serverchan-action@v2
-#       with:
-#         key: ${{ secrets.SCKEY }}
-#         text: 恭喜主人的固件编译成功！
-#         desp: 我亲爱的主人您要编译的${{ env.DEVICE_NAME }}固件成功完成了！
-        
-    - name: telegram通知
+    - name: 微信通知
       if: steps.organize.outputs.status == 'success'
-      uses: appleboy/telegram-action@master
+      uses: yakumioto/serverchan-action@v2
       with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 我亲爱的主人您要编译的${{ env.DEVICE_NAME }}固件成功完成了！
+        key: ${{ secrets.SCKEY }}
+        text: 恭喜主人的固件编译成功！
+        desp: 我亲爱的主人您要编译的${{ env.DEVICE_NAME }}固件成功完成了！
         
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
