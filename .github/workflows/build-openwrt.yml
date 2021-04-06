@@ -51,9 +51,9 @@ jobs:
       uses: actions/checkout@main
 
     - name: 微信通知
-      uses: emon100/Action-Serverchan@master
+      uses: yakumioto/serverchan-action@v2
       with:
-        SCKEY: ${{ secrets.SCKEY }}
+        key: ${{ secrets.SCKEY }}
         text: 开始编译啦
         desp: 主人您的固件正在努力耕耘中......
 
@@ -205,9 +205,9 @@ jobs:
         
     - name: 微信通知
       if: steps.organize.outputs.status == 'success'
-      uses: emon100/Action-Serverchan@master
+      uses: yakumioto/serverchan-action@v2
       with:
-        SCKEY: ${{ secrets.SCKEY }}
+        key: ${{ secrets.SCKEY }}
         text: 恭喜主人的固件编译成功！
         desp: 我亲爱的主人您要编译的${{ env.DEVICE_NAME }}固件成功完成了！
         
