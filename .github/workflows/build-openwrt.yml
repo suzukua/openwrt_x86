@@ -50,6 +50,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: 微信通知
+      if: env.SERVERCHAN_SCKEY == 'true'
+      uses: emon100/Action-Serverchan@master
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: 开始编译${{matrix.target}}啦
+        desp: 主人您设置要编译的[${{ env.DEVICE_NAME }}]固件正在努力耕耘中......
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -195,5 +203,14 @@ jobs:
       with:
         keep_latest: 3
         delete_tags: true
+        
+    - name: 微信通知
+      if: steps.organizer.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
+      uses: emon100/Action-Serverchan@master
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: 恭喜主人${{matrix.target}}固件编译成功！
+        desp: 我亲爱的主人您要编译的${{ env.DEVICE_NAME }}固件成功完成了！
+        
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
