@@ -18,6 +18,15 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+        
+  #点☆Star触发开始编译
+  watch:
+    types: started
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
