@@ -51,11 +51,11 @@ jobs:
       uses: actions/checkout@main
 
     - name: 微信通知
-      uses: yakumioto/serverchan-action@v2
+      uses: appleboy/telegram-action@master
       with:
-        key: ${{ secrets.SCKEY }}
-        text: 开始编译啦
-        desp: 主人您的固件正在努力耕耘中......
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: 开始编译啦
         
     - name: Initialization environment
       env:
@@ -205,11 +205,11 @@ jobs:
         
     - name: 微信通知
       if: steps.organize.outputs.status == 'success'
-      uses: yakumioto/serverchan-action@v2
+      uses: appleboy/telegram-action@master
       with:
-        key: ${{ secrets.SCKEY }}
-        text: 固件编译成功
-        desp: 您要编译的固件成功完成了！
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: 您要编译的固件成功完成了！
         
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
