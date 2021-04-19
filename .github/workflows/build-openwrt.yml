@@ -55,7 +55,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 开始编译啦
+        message: openwrt开始编译啦
         
     - name: Initialization environment
       env:
@@ -209,7 +209,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 您要编译的固件成功完成了！
+        message: openwrt编译结束啦！
         
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
