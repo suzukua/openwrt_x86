@@ -211,5 +211,13 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: openwrt编译结束啦！
         
+    - name: 失败微信通知
+      if: ${{ failure() }}
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: 警告：openwrt编译失败
+        
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
